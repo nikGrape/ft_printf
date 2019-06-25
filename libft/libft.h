@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 18:26:04 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/17 20:47:06 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/06/24 19:25:17 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void			*ft_memdup(void const *src, size_t len);
 int				ft_wdcounter(char const *str, char c);
 int				ft_strindex(char *haystack, char *needle);
 void			ft_swap(char *c1, char *c2);
+char			*ft_ftoa(float i);
 /*
 	**get_next_line
 */

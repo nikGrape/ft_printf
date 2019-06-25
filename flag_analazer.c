@@ -6,13 +6,56 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 17:05:39 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/22 17:30:57 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/06/25 00:45:54 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_flag		flag_analazer(char *s)
+t_flag	flag_analazer(const char *s)
 {
-	
+	t_flag flags;
+
+	ft_bzero(&flags, sizeof(t_flag));
+	flags.width = -1;
+	if (s[flags.steps] == '#')
+	{
+		flags.hashtag = 1;
+		flags.steps++;
+	}
+	if (s[flags.steps] == '-')
+	{
+		flags.minus = 1;
+		flags.steps++;
+	}
+	if (s[flags.steps] == ' ')
+	{
+		flags.spase = 1;
+		flags.steps++;
+	}
+	if (s[flags.steps] == '+')
+	{
+		flags.plus = 1;
+		flags.steps++;
+	}
+	if (s[flags.steps] == '0')
+	{
+		flags.zero = 1;
+		flags.steps++;
+	}
+	if (s[flags.steps] >= '1' && s[flags.steps] <= '9')
+	{
+		flags.length = ft_atoi(&s[flags.steps]);
+		while (s[flags.steps] >= '0' && s[flags.steps] <= '9')
+			flags.steps++;
+	}
+	if (s[flags.steps] == '.')
+	{
+		flags.width = ft_atoi(&s[++flags.steps]);
+		while (s[flags.steps] >= '0' && s[flags.steps] <= '9')
+			flags.steps++;
+	}
+	if (flags.minus)
+		flags.zero = 0;
+	return (flags);
 }

@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_hex.c                                        :+:      :+:    :+:   */
+/*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 09:43:00 by exam              #+#    #+#             */
-/*   Updated: 2019/06/22 15:37:10 by vinograd         ###   ########.fr       */
+/*   Created: 2019/06/24 18:27:57 by vinograd          #+#    #+#             */
+/*   Updated: 2019/06/24 19:24:53 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <wchar.h>
+#include "libft.h"
 
-void	convert(size_t i, int form)
+char	*ft_ftoa(float i)
 {
-	char nums[] = "0123456789abcdef";
-	char nums2[] = "0123456789ABCDEF";
+	int		a;
+	char	*str;
 
-	if (form)
-		write(1, &nums2[i], 1);
-	else
-		write(1, &nums[i], 1);
-}
-
-void	print_hex(size_t i, int form)
-{
-	if (i >= 16)
-		print_hex(i / 16, form);
-	convert(i % 16, form);
+	a = (int)i;
+	i -= a;
+	while (i > (int)i)
+		i *= 10;
+	str = ft_strjoin(ft_strjoin(ft_itoa(a), "."), ft_itoa(i));
+	return (str);
 }
