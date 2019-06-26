@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ftoa.c                                          :+:      :+:    :+:   */
+/*   ft_strupper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/24 18:27:57 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/26 01:46:31 by vinograd         ###   ########.fr       */
+/*   Created: 2019/06/25 14:42:44 by vinograd          #+#    #+#             */
+/*   Updated: 2019/06/25 14:54:12 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_ftoa(double i, int precision)
+void	ft_strupper(char *str)
 {
-	int		a;
-	char	*str;
-
-	a = (int)i;
-	i -= a;
-	while (i > (int)i && precision--)
-		i *= 10;
-	str = ft_strjoin_free(ft_strjoin_free(ft_itoa(a), ".", 1), ft_itoa(i), 3);
-	return (str);
+	while (*str)
+	{
+		*str = ft_toupper(*str);
+		str++;
+	}
 }

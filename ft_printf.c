@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 11:15:24 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/25 01:05:13 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/06/26 02:05:02 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,41 @@ int		ft_printf(const char *str, ...)
 	t_flag	flags;
 	char	*s;
 	int		i;
+	int		total;
 
 	i = 0;
+	total = 0;
 	va_start(ap, str);
 	while (str[i])
 	{
-		if (str[i] != '%')
+		if (str[i] != '%' || (str[i] == '%' && str[i + 1] == '%'))
 		{
+			i += (str[i] == '%' && str[i + 1] == '%') ? 1 : 0;
 			ft_putchar(str[i++]);
+			total++;
 			continue ;
 		}
 		flags = flag_analazer(&str[++i]);
 		i += flags.steps;
 		s = specifier(str[i++], flags, &ap);
+		total += ft_strlen(s);
 		ft_putstr(s);
+		ft_strdel(&s);
 	}
 	va_end(ap);
-	return (i);
+	return (total);
 }
 
-int		main()
-{
-	float f = 145.123222;
-	char s[] = "hello world and piece";
-	ft_printf("Hello %08.2d world %f\n%30sa\n%05.4x\n", 121111, f, s, 42344);
-	   printf("Hello %08.2d world %f\n%30sa\n%05.4x\n", 121111, f, s, 42344);
-	ft_printf("%p\n", s);
-	printf("%p\n", s);
-}
+// int		main()
+// {
+// 	float f = 150.123445;
+// 	int i = 214;
+// 	unsigned int j;
+// 	char s[] = "hello world and piece";
+// 	int a = ft_printf("%-30.20sr%%lol %#o\n", s, i);
+// 	printf("%d\n", a);
+// 	a = printf("%-30.20sr%%lol %#o\n", s, i);
+// 	printf("%d\n", a);
+// 	printf("%+05.7f\n", f);
+// 	ft_printf("%+05.7f\n", f);
+// }

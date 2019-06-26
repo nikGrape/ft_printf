@@ -6,22 +6,28 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 15:41:44 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/24 19:59:39 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/06/25 16:15:54 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-	// int minus;
-	// int zero;
-	// int spase;
-	// int lehgth;
-	// int width;
+	// int	steps; +
+	// int hashtag;+
+	// int minus; +
+	// int spase;+
+	// int plus;+
+	// int zero; +
+	// int width; 
+	// int length; 
 	// int l_flag;
 	// int h_flag;
 
 void print_flags(t_flag flags)
 {
-	printf("steps %d\n- %d\n0 %d\nspase %d\n", flags.steps, flags.minus, flags.zero, flags.spase);
-	printf("len %d\nwidth %d\nl %d\nh %d\n", flags.length, flags.width, flags.l_flag, flags.h_flag);
+	printf("steps\t%d\nhashtag\t%d\n", flags.steps, flags.hashtag);
+	printf("minus\t%d\nspase\t%d\n", flags.minus, flags.spase);
+	printf("plus\t%d\nzero\t%d\n", flags.plus, flags.zero);
+	printf("width\t%d\nwidth\t%d\n", flags.width, flags.length);
+	printf("l_flag\t%d\nh_flag\t%d\n", flags.l_flag, flags.h_flag);
 }

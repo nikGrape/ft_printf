@@ -1,26 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ftoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_unsigned.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/24 18:27:57 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/26 01:46:31 by vinograd         ###   ########.fr       */
+/*   Created: 2019/06/25 15:28:12 by vinograd          #+#    #+#             */
+/*   Updated: 2019/06/25 15:45:07 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_ftoa(double i, int precision)
+static int	size(unsigned int i)
 {
-	int		a;
-	char	*str;
+	int size;
 
-	a = (int)i;
-	i -= a;
-	while (i > (int)i && precision--)
-		i *= 10;
-	str = ft_strjoin_free(ft_strjoin_free(ft_itoa(a), ".", 1), ft_itoa(i), 3);
+	if (i == 0)
+		return (1);
+	size = 0;
+	while (i > 0)
+	{
+		i /= 10;
+		size++;
+	}
+	return (size);
+}
+
+char		*ft_itoa_unsigned(unsigned int nbr)
+{
+	char	*str;
+	int		len;
+
+	len = size(nbr);
+	if (!(str = ft_strnew(len)))
+		return (NULL);
+	while (len-- >= 0)
+	{
+		str[len] = nbr % 10 + '0';
+		nbr /= 10;
+	}
 	return (str);
 }

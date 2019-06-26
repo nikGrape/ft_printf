@@ -6,11 +6,22 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 17:05:39 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/25 00:45:54 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/06/25 16:10:08 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+	// int	steps; +
+	// int hashtag;+
+	// int minus; +
+	// int spase;+
+	// int plus;+
+	// int zero; +
+	// int width; +
+	// int length; +
+	// int l_flag;
+	// int h_flag;
 
 t_flag	flag_analazer(const char *s)
 {

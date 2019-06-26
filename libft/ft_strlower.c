@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stradd.c                                        :+:      :+:    :+:   */
+/*   ft_strlower.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/24 21:50:31 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/25 00:07:03 by vinograd         ###   ########.fr       */
+/*   Created: 2019/06/25 14:48:09 by vinograd          #+#    #+#             */
+/*   Updated: 2019/06/25 14:53:13 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-char	*ft_stradd(char *str, char ch)
+void	ft_strlower(char *str)
 {
-	int		len;
-	char	*new;
-
-	len = 0;
-	if (str)
+	while (*str)
 	{
-		len = ft_strlen(str);
-		if (!(new = (char*)ft_strnew(len + 1)))
-			return (NULL);
-		ft_strcat(new, str);
-		ft_strdel(&str);
+		*str = ft_tolower(*str);
+		str++;
 	}
-	else
-		new = ft_strnew(1);
-	new[len] = ch;
-	new[len + 1] = '\0';
-	return (new);
 }
