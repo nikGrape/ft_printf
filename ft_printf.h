@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:07:55 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/27 18:00:35 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/06/27 19:45:18 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_flags
 	int l_flag;
 	int h_flag;
 	int j_flag;
+	int z_flag;
 }				t_flag;
 
 t_flag			flag_analazer(const char *s);

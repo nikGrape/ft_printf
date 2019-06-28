@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 17:05:39 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/27 17:52:50 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/06/27 20:33:18 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,52 +25,40 @@
 
 int		is_flag(char ch)
 {
-	if (ch == ' ' || ch == '#' || ch == '+' || ch == '-')
+	if (ch == ' ' || ch == '#' || ch == '+'\
+	|| ch == '-' || ch == '0')
 		return (1);
 	return (0);
 }
 
-// t_flag	flag_analazer2(const char *s)
-// {
-// 	while ()
-// }
+t_flag	flag_analazer2(const char *s)
+{
+	t_flag flags;
+
+	ft_bzero(&flags, sizeof(t_flag));// s = "%10.6d", 25  000025
+	flags.width = -1;
+	while (is_flag(s[flags.steps]))
+	{
+		if (s[flags.steps] == '#')
+			flags.hashtag = 1;
+		if (s[flags.steps] == '-')
+			flags.minus = 1;
+		if (s[flags.steps] == ' ')
+			flags.spase = 1;
+		if (s[flags.steps] == '+')
+			flags.plus = 1;
+		if (s[flags.steps] == '0')
+			flags.zero = 1;
+		flags.steps++;
+	}
+	return (flags);
+}
 
 t_flag	flag_analazer(const char *s)
 {
 	t_flag flags;
 
-	ft_bzero(&flags, sizeof(t_flag));
-	flags.width = -1;
-	while (s[flags.steps] == '#')
-	{
-		flags.hashtag = 1;
-		flags.steps++;
-	}
-	if (s[flags.steps] == '-')
-	{
-		flags.minus = 1;
-		flags.steps++;
-	}
-	while (s[flags.steps] == ' ')
-	{
-		flags.spase = 1;
-		flags.steps++;
-	}
-	while (s[flags.steps] == '+')
-	{
-		flags.plus = 1;
-		flags.steps++;
-	}
-	while (s[flags.steps] == ' ')
-	{
-		flags.spase = 1;
-		flags.steps++;
-	}
-	while (s[flags.steps] == '0')
-	{
-		flags.zero = 1;
-		flags.steps++;
-	}
+	flags = flag_analazer2(s);
 	if (s[flags.steps] >= '1' && s[flags.steps] <= '9')
 	{
 		flags.length = ft_atoi(&s[flags.steps]);
@@ -96,6 +84,11 @@ t_flag	flag_analazer(const char *s)
 	if (s[flags.steps] == 'j')
 	{
 		flags.j_flag++;
+		flags.steps++;
+	}
+	if (s[flags.steps] == 'z')
+	{
+		flags.z_flag++;
 		flags.steps++;
 	}
 	if (flags.minus)

@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 11:15:24 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/27 18:33:59 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/06/27 22:49:15 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ int		ft_printf(const char *str, ...)
 	va_start(ap, str);
 	while (str[i])
 	{
-		if (str[i] != '%' || (str[i] == '%' && str[i + 1] == '%'))
+		if (str[i] != '%')
 		{
-			i += (str[i] == '%' && str[i + 1] == '%') ? 1 : 0;
 			ft_putchar(str[i++]);
 			total++;
 			continue ;
@@ -44,16 +43,17 @@ int		ft_printf(const char *str, ...)
 	return (total);
 }
 
-int		main()
-{
-	float f = 150.123445;
-	int i = -214;
-	unsigned int j;
-	char s[] = "hello world and piece";
-	int a = ft_printf("%-30.20sr%%lol %#o\n", s, i);
-	printf("%d\n", a);
-	a = printf("%-30.20sr%%lol %#o\n", s, (int)i);
-	printf("% c\n", 0);
-	ft_printf("%#08x\n", 42);
-	printf("% d\n", 42);
-}
+// int		main()
+// {
+// 	// float f = 150.123445;
+// 	// int i = -214;
+// 	// unsigned int j;
+// 	// char s[] = "hello world and piece";
+// 	// int a = ft_printf("%-30.20sr%%lol %#o\n", s, i);
+// 	// printf("%d\n", a);
+// 	// a = printf("%-30.20sr%%lol %#o\n", s, (int)i);
+// 	// //printf("% c\n", 0);
+// 	// ft_printf("%#08x\n", 42);
+// 	ft_printf("%#.o\n", 0);
+// 	printf("%#.o\n", 0);
+// }

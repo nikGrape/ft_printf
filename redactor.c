@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 16:55:05 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/27 17:12:10 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/06/27 22:50:27 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 
 static char	*hashtag_redactor(int specifier, char *arg)
 {
+	if (!ft_strcmp(arg, "0"))
+		return (arg);
 	if (specifier == 'x' || specifier == 'p')
 		return (ft_strjoin_free("0x", arg, 2));
 	if (specifier == 'o')
@@ -74,6 +76,10 @@ char		*redactor(char *arg, t_flag flags, int specifier)
 		arg = digit_redactor(arg, dash, flags.width);
 		if (flags.hashtag || specifier == 'p')
 			arg = hashtag_redactor(specifier, arg);
+		if (!flags.width && !ft_strcmp(arg, "0") &&\
+		(specifier == 'x' || specifier == 'o' || specifier == 'd')\
+		&& !(flags.hashtag && specifier == 'o'))
+			arg[0] = '\0';
 		if (!dash && flags.plus && (specifier == 'd' || specifier == 'f'))
 			arg = ft_strjoin_free("+", arg, 2);
 		ch = (flags.width != -1) ? ' ' : ch;
@@ -85,12 +91,15 @@ char		*redactor(char *arg, t_flag flags, int specifier)
 	{
 		str = ft_strnew(flags.length - len);
 		ft_memset(str, ch, flags.length - len);
-		str = (flags.minus) ? ft_strjoin_free(arg, str, 3) : ft_strjoin_free(str, arg, 3);
+		arg = (flags.minus) ? ft_strjoin_free(arg, str, 3) : ft_strjoin_free(str, arg, 3);
 		if (dash && ch == '0')
-			ft_swap(str, ft_strchr(str, '-'));
-		// if (flags.hashtag || specifier == 'p')
-		//  	arg = hashtag_redactor(specifier, arg);
-		return (str);
+			ft_swap(arg, ft_strchr(arg, '-'));
+		if (flags.hashtag && ch == '0' && (str = ft_strchr(arg, 'x')))
+		  	ft_swap(str, arg + 1);
+		if ((specifier == 'd' || specifier == 'f') && flags.plus && ch == '0')
+			ft_swap(ft_strchr(arg, '0'), ft_strchr(arg, '+'));
+		return (arg);
+		//if (flags.spase)
 	}
 	return (arg);
 }
