@@ -1,44 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_unsigned.c                                 :+:      :+:    :+:   */
+/*   ft_itoa_big.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 15:28:12 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/25 15:45:07 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/06/28 19:38:17 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	size(unsigned int i)
+char		*ft_itoa_unsigned(size_t nbr)
 {
-	int size;
+	char ch;
+	char *str;
 
-	if (i == 0)
-		return (1);
-	size = 0;
-	while (i > 0)
-	{
-		i /= 10;
-		size++;
-	}
-	return (size);
+	str = NULL;
+	if (nbr >= 10)
+		str = ft_itoa_unsigned(nbr / 10);
+	ch = nbr % 10 + '0';
+	return (ft_stradd(str, ch));
 }
 
-char		*ft_itoa_unsigned(unsigned int nbr)
+char		*ft_itoa_long(long nbr)
 {
-	char	*str;
-	int		len;
-
-	len = size(nbr);
-	if (!(str = ft_strnew(len)))
-		return (NULL);
-	while (len-- >= 0)
-	{
-		str[len] = nbr % 10 + '0';
-		nbr /= 10;
-	}
-	return (str);
+	if (nbr < 0)
+		return (ft_strjoin_free("-", ft_itoa_unsigned(-nbr), 2));
+	else
+		return (ft_itoa_unsigned(nbr));
 }
+
+

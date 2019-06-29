@@ -3,30 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   redactor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 16:55:05 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/27 22:50:27 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/06/28 17:50:30 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**		int	steps; +
-**		int hashtag;
-**		int minus; +
-**		int spase;
-**		int plus;
-**		int zero; +
-**		int width; +
-**		int length; +
-**		int l_flag;
-**		int h_flag;
-**
 **	specifier 0 - str or char
 **	specifier 1 - int or float
-**	specifier 2 - hex or HEX
-**	specifier 3 - oct
-**	specifier 4 - memory
+**	specifier x - hex or HEX
+**	specifier o - oct
+**	specifier p - memory
 */
 
 #include "ft_printf.h"
@@ -42,18 +31,17 @@ static char	*hashtag_redactor(int specifier, char *arg)
 	return (arg);
 }
 
-static char	*digit_redactor(char *arg, char *dash, int width)
+static char	*add_zeros(char *arg, char *dash, t_flag flags)
 {
 	int		len;
 	char	*str;
 
 	len = ft_strlen(arg);
-	dash = ft_strchr(arg, '-');
-	if (width > len)
+	if (flags.width > len)
 	{
 		len = (dash) ? len - 1 : len;
-		str = ft_strnew(width - len);
-		ft_memset(str, '0', width - len);
+		str = ft_strnew(flags.width - len);
+		ft_memset(str, '0', flags.width - len);
 		str = ft_strjoin_free(str, arg, 3);
 		if (dash)
 			ft_swap(ft_strchr(str, '-'), str);
@@ -62,44 +50,51 @@ static char	*digit_redactor(char *arg, char *dash, int width)
 	return (arg);
 }
 
-char		*redactor(char *arg, t_flag flags, int specifier)
+static char	*digit_redactor(char *arg, char *dash, t_flag flags)
 {
-	int		len;
-	char	ch;
-	char	*str;
-	char	*dash;
-
-	ch = (flags.zero) ? '0' : ' ';
-	dash = ft_strchr(arg, '-');
-	if (specifier)
-	{
-		arg = digit_redactor(arg, dash, flags.width);
-		if (flags.hashtag || specifier == 'p')
-			arg = hashtag_redactor(specifier, arg);
+		arg = add_zeros(arg, dash, flags);
+		if (flags.hashtag || flags.spcf == 'p')
+			arg = hashtag_redactor(flags.spcf, arg);
 		if (!flags.width && !ft_strcmp(arg, "0") &&\
-		(specifier == 'x' || specifier == 'o' || specifier == 'd')\
-		&& !(flags.hashtag && specifier == 'o'))
+		(flags.spcf == 'x' || flags.spcf == 'o' || flags.spcf == 'd')\
+		&& !(flags.hashtag && flags.spcf == 'o'))
 			arg[0] = '\0';
-		if (!dash && flags.plus && (specifier == 'd' || specifier == 'f'))
+		if (!dash && flags.plus && (flags.spcf == 'd' || flags.spcf == 'f'))
 			arg = ft_strjoin_free("+", arg, 2);
-		ch = (flags.width != -1) ? ' ' : ch;
-	}
-	else if (flags.width != -1 && flags.width < (int)ft_strlen(arg))
-		arg[flags.width] = '\0';
-	len = ft_strlen(arg);
+		return (arg);
+}
+
+static char	*finil_redactor(char *arg, t_flag flags, int len)
+{
+	char *str;
+	char *dash;
+
 	if (len < flags.length)
 	{
 		str = ft_strnew(flags.length - len);
-		ft_memset(str, ch, flags.length - len);
+		ft_memset(str, flags.filler, flags.length - len);
 		arg = (flags.minus) ? ft_strjoin_free(arg, str, 3) : ft_strjoin_free(str, arg, 3);
-		if (dash && ch == '0')
-			ft_swap(arg, ft_strchr(arg, '-'));
-		if (flags.hashtag && ch == '0' && (str = ft_strchr(arg, 'x')))
-		  	ft_swap(str, arg + 1);
-		if ((specifier == 'd' || specifier == 'f') && flags.plus && ch == '0')
+		dash =  (flags.spcf != 's' && flags.spcf != 'c') ? ft_strchr(arg, '-') : NULL;
+		if (dash && flags.filler == '0')
+			ft_swap(arg, dash);
+		if (flags.hashtag && flags.filler == '0' && (str = ft_strchr(arg, 'x')))
+			ft_swap(str, arg + 1);
+		if (!dash && (flags.spcf == 'd' || flags.spcf == 'f') && flags.plus && flags.filler == '0')
 			ft_swap(ft_strchr(arg, '0'), ft_strchr(arg, '+'));
-		return (arg);
-		//if (flags.spase)
 	}
+	return (arg);
+}
+
+char		*redactor(char *arg, t_flag flags, int specifier)
+{
+	flags.spcf = specifier;	
+	if (flags.spcf != 's' && flags.spcf != 'c')
+	{
+		arg = digit_redactor(arg, ft_strchr(arg, '-'), flags);
+		flags.filler = (flags.width != -1) ? ' ' : flags.filler;
+	}
+	else if (flags.width != -1 && flags.width < (int)ft_strlen(arg))
+		arg[flags.width] = '\0';
+	arg = finil_redactor(arg, flags, ft_strlen(arg));
 	return (arg);
 }

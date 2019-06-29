@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flag_analazer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 17:05:39 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/27 20:33:18 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/06/28 14:46:58 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 	// int l_flag;
 	// int h_flag;
 
-int		is_flag(char ch)
+static int		is_flag(char ch)
 {
 	if (ch == ' ' || ch == '#' || ch == '+'\
 	|| ch == '-' || ch == '0')
@@ -31,11 +31,11 @@ int		is_flag(char ch)
 	return (0);
 }
 
-t_flag	flag_analazer2(const char *s)
+static t_flag	flag_analazer_first(const char *s)
 {
 	t_flag flags;
 
-	ft_bzero(&flags, sizeof(t_flag));// s = "%10.6d", 25  000025
+	ft_bzero(&flags, sizeof(t_flag));
 	flags.width = -1;
 	while (is_flag(s[flags.steps]))
 	{
@@ -51,14 +51,17 @@ t_flag	flag_analazer2(const char *s)
 			flags.zero = 1;
 		flags.steps++;
 	}
+	if (flags.minus)
+		flags.zero = 0;
+	flags.filler = (flags.zero) ? '0' : ' ';
 	return (flags);
 }
 
-t_flag	flag_analazer(const char *s)
+t_flag			flag_analazer(const char *s)
 {
 	t_flag flags;
 
-	flags = flag_analazer2(s);
+	flags = flag_analazer_first(s);
 	if (s[flags.steps] >= '1' && s[flags.steps] <= '9')
 	{
 		flags.length = ft_atoi(&s[flags.steps]);
@@ -91,7 +94,5 @@ t_flag	flag_analazer(const char *s)
 		flags.z_flag++;
 		flags.steps++;
 	}
-	if (flags.minus)
-		flags.zero = 0;
 	return (flags);
 }
