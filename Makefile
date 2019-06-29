@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+         #
+#    By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/26 01:51:05 by vinograd          #+#    #+#              #
-#    Updated: 2019/06/26 02:04:08 by vinograd         ###   ########.fr        #
+#    Updated: 2019/06/28 20:48:14 by Nik              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME=libftprintf.a
 
 SRCS=*.c
 
-OBJECTS=*.o
+OBJECTS=src/*.o
 
 INCLUDES=./
 
@@ -28,7 +28,7 @@ $(NAME):
 
 clean:
 	@make -C libft/ clean
-	/bin/rm -f *.o
+	/bin/rm -f $(OBJECTS)
 
 fclean: clean
 	@make -C libft/ fclean

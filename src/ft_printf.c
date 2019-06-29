@@ -6,12 +6,11 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 11:15:24 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/28 19:38:38 by Nik              ###   ########.fr       */
+/*   Updated: 2019/06/28 20:46:33 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <wchar.h>
 
 int		ft_printf(const char *str, ...)
 {
@@ -34,7 +33,8 @@ int		ft_printf(const char *str, ...)
 		}
 		flags = flag_analazer(&str[++i]);
 		i += flags.steps;
-		s = specifier(str[i++], flags, &ap);
+		if (!(s = specifier(str[i++], flags, &ap)))
+			continue ;
 		total += ft_strlen(s);
 		ft_putstr(s);
 		ft_strdel(&s);
@@ -43,29 +43,8 @@ int		ft_printf(const char *str, ...)
 	return (total);
 }
 
-// int		main()
-// {
-// 	// float f = 150.123445;
-// 	// int i = -214;
-// 	// unsigned int j;
-// 	// char *str = ft_strdup("Hello world!");
-// 	// str = ft_stradd(str, 0);
-// 	// char s[] = "hello world and piece";
-//  	// int a = ft_printf("%-30.20sr%%lol %#o\n", s, i);
-// 	// printf("%d\n", a);
-// 	// a = printf("%-30.20sr%%lol %#o\n", s, (int)i);
-// 	// //printf("% c\n", 0);
-// 	// ft_printf("%#08x\n", 42);
-// 	// ft_printf("% 05d\n", 42);
-// 	// printf("% 05d\n", 42);
-// 	// ft_printf("%#.o\n", 0);
-// 	// printf("%#.o\n", 0);
-// 	// ft_printf("%hd\n", 32768);
-// 	// printf("%hd\n", 32768);
-// 	ft_printf("%jd\n", -922337203685477580);
-// 	ft_printf("%lld\n", -9223372036854775808);
-// 	printf("%ld\n", -9223372036854775808);
-// 	ft_printf("%ld\n", -2147483649);
-// 	printf("%ld\n", -2147483649);
-
-// }
+int		main()
+{
+	ft_printf("%03.2d\n", -1);
+	printf("%03.2d\n", -1);
+}

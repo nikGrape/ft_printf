@@ -6,22 +6,11 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 17:05:39 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/28 14:46:58 by Nik              ###   ########.fr       */
+/*   Updated: 2019/06/28 20:49:47 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-	// int	steps; +
-	// int hashtag;+
-	// int minus; +
-	// int spase;+
-	// int plus;+
-	// int zero; +
-	// int width; +
-	// int length; +
-	// int l_flag;
-	// int h_flag;
 
 static int		is_flag(char ch)
 {
