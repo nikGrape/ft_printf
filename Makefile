@@ -6,17 +6,17 @@
 #    By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/26 01:51:05 by vinograd          #+#    #+#              #
-#    Updated: 2019/06/28 20:48:14 by Nik              ###   ########.fr        #
+#    Updated: 2019/06/28 20:54:44 by Nik              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=libftprintf.a
 
-SRCS=*.c
+SRCS=src/*.c
 
-OBJECTS=src/*.o
+OBJECTS=*.o
 
-INCLUDES=./
+INCLUDES=src/
 
 all: $(NAME)
 

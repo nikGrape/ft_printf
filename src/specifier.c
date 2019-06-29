@@ -6,7 +6,7 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 00:55:21 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/28 20:45:33 by Nik              ###   ########.fr       */
+/*   Updated: 2019/06/28 21:07:37 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ char	*specifier(char ch, t_flag flags, va_list *ap)
 	{
 		ch = (char)va_arg(*ap, int);
 		if (ch == 0)
-			s = ft_strdup("@");
-		s = redactor(ft_stradd(NULL, ch), flags, 'c');
+			s = redactor(s = ft_strdup("@"), flags, 'c');
+		else
+			s = redactor(ft_stradd(NULL, ch), flags, 'c');
 	}
 	else if (ch == 'd' || ch == 'i')
 	{
@@ -56,8 +57,7 @@ char	*specifier(char ch, t_flag flags, va_list *ap)
 	else if (ch == 'f')
 	{
 		flags.width = (flags.width == -1) ? 6 : flags.width;
-		s = redactor(ft_ftoa((float)va_arg(*ap, double), flags.width),\
-		flags, 'f');
+		s = redactor(ft_ftoa((float)va_arg(*ap, double), flags.width), flags, 'f');
 	}
 	else if (ch == 'X' || ch == 'x')
 	{

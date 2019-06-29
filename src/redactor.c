@@ -6,7 +6,7 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 16:55:05 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/28 20:37:48 by Nik              ###   ########.fr       */
+/*   Updated: 2019/06/28 22:53:40 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*finil_redactor(char *arg, t_flag flags, int len)
 	{
 		str = ft_strnew(flags.length - len);
 		ft_memset(str, flags.filler, flags.length - len);
-		arg = (flags.minus) ? ft_strjoin_free(arg, str, 3) : ft_strjoin_free(str, arg, 3);
+		arg = (flags.minus || flags.spcf == 'p') ? ft_strjoin_free(arg, str, 3) : ft_strjoin_free(str, arg, 3);
 		dash =  (flags.spcf != 's' && flags.spcf != 'c') ? ft_strchr(arg, '-') : NULL;
 		if (dash && flags.filler == '0')
 			ft_swap(arg, dash);
@@ -33,10 +33,12 @@ static char	*finil_redactor(char *arg, t_flag flags, int len)
 	return (arg);
 }
 
-static char	*hashtag_redactor(int specifier, char *arg)
+static char	*hashtag_redactor(int specifier, char *arg, int width)
 {
-	if (!ft_strcmp(arg, "0"))
+	if (!ft_strcmp(arg, "0") && specifier != 'p')
 		return (arg);
+	if (!ft_strcmp(arg, "0") && specifier == 'p' && !width)
+		arg[0] = '\0';
 	if (specifier == 'x' || specifier == 'p')
 		return (ft_strjoin_free("0x", arg, 2));
 	if (specifier == 'o')
@@ -66,7 +68,7 @@ static char	*digit_redactor(char *arg, char *dash, t_flag flags)
 {
 		arg = add_zeros(arg, dash, flags);
 		if (flags.hashtag || flags.spcf == 'p')
-			arg = hashtag_redactor(flags.spcf, arg);
+			arg = hashtag_redactor(flags.spcf, arg, flags.width);
 		if (!flags.width && !ft_strcmp(arg, "0") &&\
 		(flags.spcf == 'x' || flags.spcf == 'o' || flags.spcf == 'd')\
 		&& !(flags.hashtag && flags.spcf == 'o'))

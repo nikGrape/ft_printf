@@ -6,7 +6,7 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 17:05:39 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/28 20:49:47 by Nik              ###   ########.fr       */
+/*   Updated: 2019/06/28 21:25:27 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,30 @@ static t_flag	flag_analazer_first(const char *s)
 	return (flags);
 }
 
+static void		flag_analazer_second(t_flag *flags, const char *s)
+{
+	while (s[flags->steps] == 'l')
+	{
+		flags->l_flag++;
+		flags->steps++;
+	}
+	while (s[flags->steps] == 'h')
+	{
+		flags->h_flag++;
+		flags->steps++;
+	}
+	if (s[flags->steps] == 'j')
+	{
+		flags->j_flag++;
+		flags->steps++;
+	}
+	if (s[flags->steps] == 'z')
+	{
+		flags->z_flag++;
+		flags->steps++;
+	}
+}
+
 t_flag			flag_analazer(const char *s)
 {
 	t_flag flags;
@@ -63,25 +87,6 @@ t_flag			flag_analazer(const char *s)
 		while (s[flags.steps] >= '0' && s[flags.steps] <= '9')
 			flags.steps++;
 	}
-	while (s[flags.steps] == 'l')
-	{
-		flags.l_flag++;
-		flags.steps++;
-	}
-	while (s[flags.steps] == 'h')
-	{
-		flags.h_flag++;
-		flags.steps++;
-	}
-	if (s[flags.steps] == 'j')
-	{
-		flags.j_flag++;
-		flags.steps++;
-	}
-	if (s[flags.steps] == 'z')
-	{
-		flags.z_flag++;
-		flags.steps++;
-	}
+	flag_analazer_second(&flags, s);
 	return (flags);
 }
