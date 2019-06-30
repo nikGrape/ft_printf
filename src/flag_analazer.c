@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flag_analazer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 17:05:39 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/28 21:25:27 by Nik              ###   ########.fr       */
+/*   Updated: 2019/06/29 22:37:52 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,15 @@ static t_flag	flag_analazer_first(const char *s)
 	}
 	if (flags.minus)
 		flags.zero = 0;
+	if (flags.plus)
+		flags.spase = 0;
 	flags.filler = (flags.zero) ? '0' : ' ';
 	return (flags);
 }
 
 static void		flag_analazer_second(t_flag *flags, const char *s)
 {
-	while (s[flags->steps] == 'l')
+	while (s[flags->steps] == 'l' || s[flags->steps] == 'L')
 	{
 		flags->l_flag++;
 		flags->steps++;

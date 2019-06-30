@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 11:15:24 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/28 22:53:52 by Nik              ###   ########.fr       */
+/*   Updated: 2019/06/29 22:05:08 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,31 @@ int		ft_printf(const char *str, ...)
 	va_list	ap;
 	t_flag	flags;
 	char	*s;
-	int		i;
 	int		total;
 
-	i = 0;
 	total = 0;
 	va_start(ap, str);
-	while (str[i])
+	while (*str)
 	{
-		if (str[i] != '%')
+		if (*str != '%')
 		{
-			ft_putchar(str[i++]);
+			ft_putchar(*str++);
 			total++;
 			continue ;
 		}
-		flags = flag_analazer(&str[++i]);
-		i += flags.steps;
-		if (!(s = specifier(str[i++], flags, &ap)))
+		flags = flag_analazer(++str);
+		str += flags.steps;
+		if (!(s = specifier(*str++, flags, &ap)))
 			continue ;
-		total += ft_strlen(s);
-		ft_putstr(s);
+		total += ft_putstr(s);
 		ft_strdel(&s);
 	}
 	va_end(ap);
 	return (total);
 }
 
-// int		main()
+// int		main(void)
 // {
-// 	ft_printf("%05p\n", 0);
-// 	printf("%05p\n", 0);
+// 	ft_printf("%b\n", 64);
+// 	printf("% 05d\n", -42);
 // }

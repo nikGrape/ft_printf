@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_big.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 15:28:12 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/28 19:38:17 by Nik              ###   ########.fr       */
+/*   Updated: 2019/06/29 19:49:34 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,3 @@ char		*ft_itoa_long(long nbr)
 	else
 		return (ft_itoa_unsigned(nbr));
 }
-
-
