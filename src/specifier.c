@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 00:55:21 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/30 01:27:24 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/01 12:32:55 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static char	*hendler_s_c(register char ch, t_flag flags, va_list *ap)
 	if (ch == 's')
 	{
 		s = va_arg(*ap, char *);
-		s = (s) ? redactor(ft_strdup(s), flags, 's') :\
-		redactor(ft_strdup("(null)"), flags, 's');
+		s = (s) ? str_redactor(ft_strdup(s), flags) :\
+		str_redactor(ft_strdup("(null)"), flags);
 	}
 	else if (ch == 'c')
 	{
 		ch = (char)va_arg(*ap, int);
-		s = redactor(ft_stradd(NULL, ch), flags, 'c');
+		s = str_redactor(ft_stradd(NULL, ch), flags);
 	}
 	return (s);
 }
@@ -40,23 +40,23 @@ static char	*hendler_f_x(register char ch, t_flag flags, va_list *ap)
 	{
 		flags.width = (flags.width == -1) ? 6 : flags.width;
 		if (flags.l_flag)
-			s = redactor(ft_ftoa_long(va_arg(*ap, long double), flags.width),\
-			flags, 'f');
+			s = redactor(ft_ftoa_long(va_arg(*ap, long double),\
+			flags.width), flags, 'f');
 		else
 			s = redactor(ft_ftoa(va_arg(*ap, double), flags.width), flags, 'f');
 	}
 	else if (ch == 'X' || ch == 'x')
 	{
 		s = (flags.j_flag || flags.l_flag) ?\
-		redactor(ft_itoa_base_unsigned(va_arg(*ap, size_t), 16), flags, 'x') :\
-		redactor(ft_itoa_base(va_arg(*ap, int), 16), flags, 'x');
+		redactor(ft_itoa_base_unsigned(va_arg(*ap, size_t), 16), flags, 'x')\
+		: redactor(ft_itoa_base(va_arg(*ap, int), 16), flags, 'x');
 		if (ch == 'X')
 			ft_strupper(s);
 	}
 	return (s);
 }
 
-static char	*hendler_d_i_u(register char ch, t_flag flags, va_list *ap)
+static char	*hendler_d_i_u(register char ch, register t_flag flags, va_list *ap)
 {
 	char *s;
 

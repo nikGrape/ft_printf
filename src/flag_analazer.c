@@ -6,13 +6,13 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 17:05:39 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/29 22:37:52 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/06/30 02:45:43 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int		is_flag(char ch)
+static int		is_flag(register char ch)
 {
 	if (ch == ' ' || ch == '#' || ch == '+'\
 	|| ch == '-' || ch == '0')
@@ -52,7 +52,7 @@ static void		flag_analazer_second(t_flag *flags, const char *s)
 {
 	while (s[flags->steps] == 'l' || s[flags->steps] == 'L')
 	{
-		flags->l_flag++;
+		flags->l_flag = 1;
 		flags->steps++;
 	}
 	while (s[flags->steps] == 'h')
@@ -62,12 +62,12 @@ static void		flag_analazer_second(t_flag *flags, const char *s)
 	}
 	if (s[flags->steps] == 'j')
 	{
-		flags->j_flag++;
+		flags->j_flag = 1;
 		flags->steps++;
 	}
 	if (s[flags->steps] == 'z')
 	{
-		flags->z_flag++;
+		flags->z_flag = 1;
 		flags->steps++;
 	}
 }
