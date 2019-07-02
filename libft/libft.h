@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 18:26:04 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/29 20:57:15 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/02 11:56:49 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ void			*ft_memdup(void const *src, size_t len);
 int				ft_wdcounter(char const *str, char c);
 int				ft_strindex(char *haystack, char *needle);
 void			ft_swap(char *c1, char *c2);
-char			*ft_ftoa(double i, int precision);
-char			*ft_ftoa_long(long double i, int precision);
+char			*ft_ftoa(double nbr, unsigned int precision);
+char			*ft_ftoa_long(long double nbr, unsigned int precision);
 char			*ft_itoa_unsigned(size_t nbr);
 char			*ft_itoa_long(long nbr);
 char			*ft_itoa_base(unsigned int nbr, int base);

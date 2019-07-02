@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 11:15:24 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/01 19:07:58 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/02 13:10:22 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,20 @@ int		ft_printf(const char *str, ...)
 	return (total);
 }
 
-// int		main(void)
-// {
-// 	ft_printf("%010.50f\n", 32.5656565123456789);
-// 	printf("%010.50f\n", 32.5656565123456789);
-// }
+int		main(void)
+{
+	float i = -0.01;
+	if (i < 0)
+	{
+		ft_printf("%.5f\n", -0.0);
+		printf("%.5f\n", -0.0);
+	}
+}
+
+	//  basic 1 (-12547.58)            : [SEGV]
+	//  basic 2 (0)                    : [SEGV]
+	//  basic 3 (45.123456789)         : [SEGV]
+	//  basic 4 (12389123798)          : [KO]
+	//  basic 5 (-8965421.12356432156) : [SEGV]
+	//  special 1 (inf/-inf/nan)       : [KO]
+	//  special 2 (-0.0)               : [KO]

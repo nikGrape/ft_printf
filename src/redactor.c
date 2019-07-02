@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   digit_redactor.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 10:40:30 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/01 15:28:19 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/02 11:09:15 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,26 @@ char		*redactor(char *arg, t_flag flags, register char spcf)
 		arg = ft_strjoin_free("+", arg, 2);
 	flags.filler = (flags.width != -1 && spcf != 'f') ? ' ' : flags.filler;
 	arg = final_redactor(arg, flags, ft_strlen(arg));
+	return (arg);
+}
+
+char		*str_redactor(char *arg, register t_flag flags)
+{
+	char	*str;
+	int		len;
+
+	len = ft_strlen(arg);
+	if (flags.width != -1 && flags.width < len)
+	{
+		arg[flags.width] = '\0';
+		len = flags.width;
+	}
+	if (len < flags.length)
+	{
+		str = ft_strnew(flags.length - len);
+		ft_memset(str, flags.filler, flags.length - len);
+		arg = (flags.minus) ?\
+		ft_strjoin_free(arg, str, 3) : ft_strjoin_free(str, arg, 3);
+	}
 	return (arg);
 }
