@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 17:05:39 by vinograd          #+#    #+#             */
-/*   Updated: 2019/06/30 02:45:43 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/06 15:57:33 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void		flag_analazer_second(t_flag *flags, const char *s)
 	}
 }
 
-t_flag			flag_analazer(const char *s)
+t_flag			flag_analazer(const char *s, va_list *ap)
 {
 	t_flag flags;
 
@@ -82,6 +82,11 @@ t_flag			flag_analazer(const char *s)
 		flags.length = ft_atoi(&s[flags.steps]);
 		while (s[flags.steps] >= '0' && s[flags.steps] <= '9')
 			flags.steps++;
+	}
+	else if (s[flags.steps] == '*')
+	{
+		flags.length = va_arg(*ap, int);
+		flags.steps++;
 	}
 	if (s[flags.steps] == '.')
 	{

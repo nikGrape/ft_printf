@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 11:15:24 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/03 11:04:51 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/06 18:08:38 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ int		ft_printf(const char *str, ...)
 	va_start(ap, str);
 	while (*str)
 	{
+		str += (*str == '{') ? color_redactor(str) : 0;
 		if (*str != '%')
 		{
 			ft_putchar(*str++);
 			total++;
 			continue ;
 		}
-		flags = flag_analazer(++str);
+		flags = flag_analazer(++str, &ap);
 		str += flags.steps;
 		if (!(s = specifier(*str++, flags, &ap)))
 			continue ;
@@ -42,9 +43,9 @@ int		ft_printf(const char *str, ...)
 
 int		main(void)
 {
-	float i = -0.0;
-	ft_printf("%06.0% %-10.0sa\n", "Hello");
-	printf("%06.0% %-10.0sa\n", "Hello");
-	ft_printf("% .50Lf\n", 92345678912345678.923456789123456789L);
-	printf("% .50Lf\n", 9234567891234567891234.923456789123456789L);
+	int i;
+	char str[] = "tadfsdfsd asdfa sdfasd fasd fasdf asdf";
+
+	i = 768;
+	ft_printf("{bold_red}%0*.5d {bold_blue}hello{bold_cyan} world\n{bold_yellow}%s\n{eoc}HEllo world\n", 10, i, str);
 }
