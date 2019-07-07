@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 11:15:24 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/06 18:08:38 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/06 18:48:56 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,4 @@ int		ft_printf(const char *str, ...)
 	}
 	va_end(ap);
 	return (total);
-}
-
-int		main(void)
-{
-	int i;
-	char str[] = "tadfsdfsd asdfa sdfasd fasd fasdf asdf";
-
-	i = 768;
-	ft_printf("{bold_red}%0*.5d {bold_blue}hello{bold_cyan} world\n{bold_yellow}%s\n{eoc}HEllo world\n", 10, i, str);
 }

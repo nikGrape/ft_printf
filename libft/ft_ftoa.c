@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 18:27:57 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/03 11:01:18 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/06 18:46:26 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char		*ft_ftoa_long(long double nbr, unsigned int precision)
 {
 	int			i;
 	size_t		whole;
-	char		fract[500];
+	char		fract[501];
 	int			sign;
 	char		ch;
 
