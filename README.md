@@ -2,7 +2,7 @@
 ## reproduce the behavior of the printf function
 #### *colors support:*
   
-  usage: "{red}Hello {eoc}world!"
+   usage: ft_printf("{red}Hello {eoc}world!") // Hello *will be red*, world *will be white*
 1. red
 2. bold_red
 3. green
@@ -17,6 +17,6 @@
 12. bold_cyan
 13. eoc - end of color
 
-#### *send length as a parametr*
+#### *send length as a parametr:*
 
-  usage: ft_printf("%0*d", 5, 19); -> 00019
+   usage: ft_printf("%0*d", 5, 19); -> 00019
