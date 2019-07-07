@@ -15,6 +15,8 @@
 10. bold_magenta
 11. cyan
 12. bold_cyan
+13. bold_gray
+14. black
 13. eoc - end of color
 
 #### *send length as a parametr:*
