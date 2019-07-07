@@ -1,5 +1,5 @@
 # ft_printf
-## reproduce the behavior of the printf function
+## reproduces the behavior of the printf function
 #### *colors support:*
   
    usage: ft_printf("{red}Hello {eoc}world!") // Hello *will be red*, world *will be white*
