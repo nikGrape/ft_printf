@@ -19,4 +19,4 @@
 
 #### *send length as a parametr:*
 
-   usage: ft_printf("%0*d", 5, 19); -> 00019
+   usage: ft_printf("%0*d", 5, 19); // 00019
