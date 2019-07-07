@@ -6,11 +6,13 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:19:09 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/06 18:01:55 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/06 20:12:09 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#define BLACK		"\033[0;30m"
+#define BOLD_GRAY	"\033[1;30m"
 #define RED			"\033[0;31m"
 #define BOLD_RED	"\033[1;31m"
 #define GREEN		"\033[0;32m"
@@ -22,7 +24,7 @@
 #define MAGENTA		"\033[0;35m"
 #define BLD_MAGENTA	"\033[1;35m"
 #define CYAN		"\033[0;36m"
-#define BOLD_CYAN	"\033[1;36m"
+#define BOLD_CYAN	"\033[0;36m"
 #define EOC			"\033[0m"
 
 static int	color_compare2(char *color)
@@ -38,6 +40,10 @@ static int	color_compare2(char *color)
 		i = ft_putstr(CYAN);
 	else if (!ft_strcmp("bold_cyan", color))
 		i = ft_putstr(BOLD_CYAN);
+	else if (!ft_strcmp("black", color))
+		i = ft_putstr(BLACK);
+	else if (!ft_strcmp("bold_gray", color))
+		i = ft_putstr(BOLD_GRAY);
 	else if (!ft_strcmp("eoc", color))
 		i = ft_putstr(EOC);
 	return (i);
