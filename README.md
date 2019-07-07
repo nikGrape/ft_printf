@@ -1,6 +1,6 @@
 # ft_printf
 ## reproduce the behavior of the printf function
-####*colors support:*
+#### *colors support:*
   
   usage: "{red}Hello {eoc}world!"
 1. red
@@ -17,6 +17,6 @@
 12. bold_cyan
 13. eoc - end of color
 
-####*send length as a parametr*
+#### *send length as a parametr*
 
   usage: ft_printf("%0*d", 5, 19); -> 00019
