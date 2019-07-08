@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_redactor.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:19:09 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/06 20:12:09 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/07 10:02:22 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #define MAGENTA		"\033[0;35m"
 #define BLD_MAGENTA	"\033[1;35m"
 #define CYAN		"\033[0;36m"
-#define BOLD_CYAN	"\033[0;36m"
+#define BOLD_CYAN	"\033[1;36m"
 #define EOC			"\033[0m"
 
 static int	color_compare2(char *color)

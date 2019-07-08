@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 18:27:57 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/06 18:46:26 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/07 11:25:48 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,3 +68,10 @@ char		*ft_ftoa(double nbr, unsigned int precision)
 {
 	return (ft_ftoa_long(nbr, precision));
 }
+
+// int main()
+// {
+// 	char *s = ft_ftoa(1.42l, 6);
+// 	ft_putstr(s);
+// 	ft_putstr("\n");
+// }

@@ -6,7 +6,7 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 00:55:21 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/02 17:34:12 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/07 11:51:04 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ char		*specifier(register char spcf, t_flag flags, va_list *ap)
 		flags, 'p');
 	else if (spcf == '%')
 		s = str_redactor(ft_strdup("%"), flags);
+	else if (spcf == '\0')
+		return (NULL);
 	else
 		s = str_redactor(ft_strdup(""), flags);
 	return (s);

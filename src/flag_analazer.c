@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flag_analazer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 17:05:39 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/06 15:57:33 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/08 12:22:40 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,24 @@ t_flag			flag_analazer(const char *s, va_list *ap)
 		while (s[flags.steps] >= '0' && s[flags.steps] <= '9')
 			flags.steps++;
 	}
-	else if (s[flags.steps] == '*')
+	if (0)
+		va_arg(*ap, int);
+	// else if (s[flags.steps] == '*')
+	// {
+	// 	flags.length = va_arg(*ap, int);
+	// 	flags.steps++;
+	// }
+	if ((s[flags.steps] == '.'))// || (s[flags.steps] >= '1' && s[flags.steps] <= '9' && s[flags.steps - 1] == '*'))
 	{
-		flags.length = va_arg(*ap, int);
-		flags.steps++;
-	}
-	if (s[flags.steps] == '.')
-	{
-		flags.width = ft_atoi(&s[++flags.steps]);
-		while (s[flags.steps] >= '0' && s[flags.steps] <= '9')
-			flags.steps++;
+		flags.steps += (s[flags.steps] == '.') ? 1 : 0;
+		// if (s[flags.steps] == '*')
+		// 	flags.width = va_arg(*ap, int);
+		// else
+		// {
+			flags.width = ft_atoi(&s[flags.steps]);
+			while (s[flags.steps] >= '0' && s[flags.steps] <= '9')
+				flags.steps++;
+		//}
 	}
 	flag_analazer_second(&flags, s);
 	return (flags);
