@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:07:55 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/06 17:57:15 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/09 01:28:47 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,17 @@ typedef struct	s_flags
 	unsigned char	plus;
 	unsigned char	zero;
 	unsigned char	l_flag;
+	unsigned char	ld_flag;
 	unsigned char	h_flag;
 	unsigned char	j_flag;
 	unsigned char	z_flag;
 }				t_flag;
 
-t_flag			flag_analazer(const char *s, va_list *ap);
-char			*specifier(register char ch, t_flag flags, va_list *ap);
+t_flag			flag_analazer(const char *s);
+char			*specifier(t_flag *flags, va_list *ap);
 char			*redactor(char *arg, t_flag flags, register char spcf);
 char			*str_redactor(char *arg, register t_flag flags);
 int				color_redactor(const char *str);
+int				putstr_for_null_char(char *s);
 
 #endif

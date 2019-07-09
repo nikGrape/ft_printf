@@ -4,3 +4,4 @@ libftprintf.a
 src/a.out
 libft/libft.a
 libft/a.out
+.vscode
